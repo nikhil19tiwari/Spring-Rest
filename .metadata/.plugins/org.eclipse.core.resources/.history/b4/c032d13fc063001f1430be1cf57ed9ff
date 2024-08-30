@@ -1,0 +1,65 @@
+package in.pwskill.nikhil.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import in.pwskill.nikhil.model.Employee;
+import in.pwskill.nikhil.service.IemployeeService;
+
+@RestController
+@RequestMapping("/v1/api/emp")
+public class EmplopyeeRestController {
+	
+	@Autowired
+	private IemployeeService service;
+
+	/*
+	 * 1.Method  :: Post
+	 * 2.Path    :: /save
+	 * 3.R.T     :: ResponseEntity<String>
+	 * 4.Input   :: Employee
+	 */
+	
+	@PostMapping("/save")
+	public ResponseEntity<String>saveEmployee(
+			                               @RequestBody Employee employee
+			                                    ){
+	Integer id = service.saveEmployee(employee);
+	String body = "Employee "+id+"is Created";
+		return new ResponseEntity<>(body,HttpStatus.CREATED);
+	}
+	
+	/*
+	 * 1.Method  :: Get
+	 * 2.Path    :: /get
+	 * 3.R.T     :: ResponseEntity<Employee>
+	 * 4.Input   :: id
+	 */
+	
+	@GetMapping("/get/{id}")
+	public ResponseEntity<Employee>getEmpoyee(
+			                                @PathVariable Integer id
+			                                  ){
+		Employee body = service.getOneempoyee(id);
+		return new ResponseEntity<>(body,HttpStatus.OK);
+	}
+	
+	/*
+	 * 1.Method  :: Get
+	 * 2.Path    :: /getAll
+	 * 3.R.T     :: ResponseEntity<List<Employee>>
+	 * 4.Input   :: No Input
+	 */
+	
+	@GetMapping("/getAll")
+	public ResponseEntity<List<Empoyee>> getAllEmployee(){
+		
+	}
+}

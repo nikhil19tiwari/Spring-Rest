@@ -1,0 +1,27 @@
+package in.pwskill.nikhil.CustomeException;
+
+import java.util.Date;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import in.pwskill.nikhil.Model.MyError;
+import in.pwskill.nikhil.Model.ProductNotFound;
+
+@RestControllerAdvice
+public class MyCustomeException {
+   
+	@ExceptionHandler(value = ProductNotFound.class)
+	public ResponseEntity<MyError> shoeError(
+			                    ProductNotFound pnf
+			                                ){
+		
+		MyError body = new MyError(new Date().toString(),
+				                   "Product Not Found",
+				                    "404",
+				                    pnf.getMessage());
+		return new ResponseEntity<>(body,HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+}

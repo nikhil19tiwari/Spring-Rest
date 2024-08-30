@@ -1,0 +1,13 @@
+package in.pwskill.nikhil;
+
+
+
+public class TestApp{
+	public static void main(String... args){
+     char a= 'a';
+     char b= 'd';
+     char c = (char) (a+b);
+     System.out.print(c);
+	}
+
+}

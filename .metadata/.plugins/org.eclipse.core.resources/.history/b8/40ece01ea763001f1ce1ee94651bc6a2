@@ -1,0 +1,2 @@
+spring.application.name=27-SpringRest-Crud-Operation
+server.port=9999

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Customer Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 24px;
+        }
+        .content {
+            flex: 1;
+            display: flex;
+        }
+        .sidebar {
+            width: 20%;
+            background-color: #f0f0f0;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        .sidebar button:hover {
+            background-color: #0056b3;
+        }
+        .main-content {
+            width: 80%;
+            padding: 20px;
+        }
+        .form-section {
+            margin-top: 20px;
+        }
+        footer {
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Ankit Shukla Private Limited
+    </header>
+    <div class="content">
+        <div class="sidebar">
+            <button th:onclick="'showForm(\'create\')'">Create Customer</button>
+            <button th:onclick="'showForm(\'delete\')'">Delete Customer</button>
+            <button th:onclick="'showForm(\'select\')'">Select Customer</button>
+        </div>
+        <div class="main-content">
+            <h2>Customer Management</h2>
+            <div class="form-section" id="formSection">
+                <!-- Forms will be dynamically inserted here based on the button clicked -->
+            </div>
+        </div>
+    </div>
+    <footer>
+        Name: Ankit Shukla<br>
+        Address: [Shanti Nagar valadala Road ]<br>
+        Email: [AnkitShukala@gmail.com]<br>
+        Phone: [9192376475]
+    </footer>
+
+    <script>
+        function showForm(action) {
+            const formSection = document.getElementById('formSection');
+            formSection.innerHTML = ''; // Clear the form section
+
+            if (action === 'create') {
+                formSection.innerHTML = `
+                    <h3>Create Customer</h3>
+                    <form th:action="@{/customer/createCustomer}" method="post">
+                    <label for="id">ID:</label><br>
+                    <input type="text" id="id" name="id" required><br><br>
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name" required><br><br>
+                    <label for="phone">Phone Number:</label><br>
+                    <input type="text" id="phone" name="phone" required><br><br>
+                    <label for="city">City:</label><br>
+                    <input type="text" id="city" name="city" required><br><br>
+                    <button type="submit">Create</button>
+                </form>`;
+            } else if (action === 'delete') {
+                formSection.innerHTML = `
+                    <h3>Delete Customer</h3>
+                    <form th:action="@{customer/deleteCustomer}" method="post">
+                        <label for="customerId">Customer ID:</label><br>
+                        <input type="text" id="customerId" name="customerId" required><br><br>
+                        <button type="submit">Delete</button>
+                    </form>`;
+            } else if (action === 'select') {
+                formSection.innerHTML = `
+                    <h3>Select Customer</h3>
+                    <form th:action="@{customer/selectCustomer}" method="get">
+                        <label for="customerId">Customer ID:</label><br>
+                        <input type="text" id="customerId" name="customerId" required><br><br>
+                        <button type="submit">Select</button>
+                    </form>`;
+            }
+        }
+    </script>
+</body>
+</html>

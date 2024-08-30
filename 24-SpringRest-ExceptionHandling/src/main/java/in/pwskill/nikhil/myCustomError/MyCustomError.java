@@ -1,0 +1,24 @@
+package in.pwskill.nikhil.myCustomError;
+
+import java.util.Date;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import in.pwskill.nikhil.model.MyError;
+import in.pwskill.nikhil.model.StudentNotFoundException;
+
+@RestControllerAdvice
+public class MyCustomError {
+
+    @ExceptionHandler(value = StudentNotFoundException.class)
+    public ResponseEntity<MyError> showError(StudentNotFoundException snf) {
+        MyError body = new MyError(new Date().toString(),
+                                   HttpStatus.NOT_FOUND.value(),
+                                   "Student not Found",
+                                   snf.getMessage());
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
+}

@@ -1,0 +1,19 @@
+package in.pwskill.nikhil.Model;
+
+public class ProductNotFound extends RuntimeException{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public ProductNotFound(){
+		System.out.println("Defalut Constructor is called");
+	}
+	static {
+		System.out.println("Static Method is called");
+	}
+	public ProductNotFound(String msg){
+		super(msg);
+	}
+	
+	
+}

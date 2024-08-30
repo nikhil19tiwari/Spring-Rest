@@ -1,0 +1,21 @@
+package in.pwskill.nikhil.Runner;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
+
+public class Runner implements CommandLineRunner {
+
+	@Override
+	public void run(String... args) throws Exception {
+    
+		RestTemplate templete = new RestTemplate();
+		final String url1 = "http://localhost:2222/v1/api/Student/A";
+		ResponseEntity<String> response1 = templete.getForEntity(url1, String.class);
+        System.out.println(response1.getBody());
+        System.out.println(response1.getHeaders());
+        System.out.println(response1.getStatusCode().value());
+        
+	}
+
+}

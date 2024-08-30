@@ -1,0 +1,26 @@
+package in.pwskill.nikhil;
+
+ class Book{
+	private String title;
+	private String author;
+	private Double price;
+	Book(){
+		// Default Constructor
+	}
+	Book(String title,String author){
+		this.author= author;
+		this.title = title;
+		}
+	Book(String title,String author,Double price){
+		this.author= author;
+		this.title = title;
+		this.price = price;
+	}
+ }
+public class Test {
+ public static void main(String []args) {
+	 
+	 Book b = new Book("MicroServices","Khushi",15000.0);
+	 System.out.println(b);
+ }
+}

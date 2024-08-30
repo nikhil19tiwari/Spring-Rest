@@ -1,0 +1,5 @@
+package in.pwskill.nikhil.service;
+
+public interface IemployeeService {
+
+}

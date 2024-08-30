@@ -1,0 +1,5 @@
+package in.pwskill.nikhil.myerror;
+
+public class MyCustomError {
+
+}

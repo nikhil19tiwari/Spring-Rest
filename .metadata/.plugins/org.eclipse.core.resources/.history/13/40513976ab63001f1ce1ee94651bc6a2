@@ -1,0 +1,8 @@
+package in.pwskill.nikhil.model;
+
+public class MyError {
+private String date;
+private String  status;
+private Integer code;
+private String msg;
+}

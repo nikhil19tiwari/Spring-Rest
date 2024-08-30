@@ -1,0 +1,42 @@
+package in.pwskill.nikhil.Controller;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import in.pwskill.nikhil.Model.Book;
+import in.pwskill.nikhil.Model.ProductNotFound;
+
+@RestController
+@RequestMapping("/v1/api/Book")
+public class Controller {
+	
+	/**
+	 * 1.Method :: Get
+	 * 2.Path   :: /A
+	 * 3.Input  :: NO Input
+	 * 4.R.T    :: ResponseEntity<?>
+	 */
+	
+	@GetMapping("/A/{Id}")
+	public ResponseEntity<Book>getM(
+			              @PathVariable String Id
+			                    ){
+		HttpHeaders headers = new HttpHeaders();
+		if(Id.equals("10"))
+		{
+			headers.add("True","Yes");
+			Book body = new Book("1","DSA","21","MI");
+			return new ResponseEntity<Book>(body,headers,HttpStatus.OK);
+		}
+		else {
+	     throw new ProductNotFound("Product Not found for the Id ::"+Id);
+		}
+	}
+
+}

@@ -1,0 +1,15 @@
+package in.pwskill.nikhil;
+
+class Book{
+	private String title;
+	private String author;
+	private Double price;
+}
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

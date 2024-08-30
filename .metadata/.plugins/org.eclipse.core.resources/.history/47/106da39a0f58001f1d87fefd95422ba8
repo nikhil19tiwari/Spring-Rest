@@ -1,0 +1,15 @@
+package in.pwskill.nikhil;
+
+
+
+public class TestApp{
+	public static void main(String... args){
+    String a = "(";
+    String b = ")";
+    String c = a+b;
+    if(c.equals("()")) {
+    System.out.println(c);
+	}
+	}
+
+}

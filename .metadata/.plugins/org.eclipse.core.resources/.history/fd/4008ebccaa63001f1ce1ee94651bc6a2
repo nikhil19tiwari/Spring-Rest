@@ -1,0 +1,55 @@
+package in.pwskill.nikhil.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import in.pwskill.nikhil.model.Employee;
+import in.pwskill.nikhil.repo.ICrudRepo;
+@Service
+public class EmployeeServiceImpl implements IemployeeService {
+	
+     @Autowired
+	 private ICrudRepo repo; 
+     
+	@Override
+	public Integer saveEmployee(Employee employee) {
+		// TODO Auto-generated method stub
+		employee = repo.save(employee);
+		
+		return employee.getEid();
+	}
+
+	@Override
+	public List<Employee> getAllemployee() {
+		// TODO Auto-generated method stub
+		List<Employee> body = repo.findAll();
+		return body;
+	}
+
+	@Override
+	public Employee getOneempoyee(Integer id) {
+		// TODO Auto-generated method stub
+		//Optional<Employee> employee = repo.findById(id);
+		return repo.findById(id).orElseThrow(
+				                            ()->new EmployeeNotFoundException("Student "+ id+"Not Exist");
+				                             );
+	}
+
+	@Override
+	public String updateEmployee(Employee employee) {
+		// TODO Auto-generated method stub
+         repo.save(employee);
+		return "Employee is Updated ";
+	}
+
+	@Override
+	public String deleteEmployee(Integer id) {
+		// TODO Auto-generated method stub
+		repo.deleteById(id);
+		return "Employee is deleted";
+	}
+
+}

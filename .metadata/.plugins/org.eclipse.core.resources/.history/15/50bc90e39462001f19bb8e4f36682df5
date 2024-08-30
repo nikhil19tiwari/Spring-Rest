@@ -1,0 +1,49 @@
+package in.pwskill.nikhil.Model;
+
+import java.util.Date;
+
+public class MyError {
+private Date date;
+private String message;
+private String status;
+private Integer code;
+public Date getDate() {
+	return date;
+}
+public void setDate(Date date) {
+	this.date = date;
+}
+public String getMessage() {
+	return message;
+}
+public MyError(Date date, String message, String status, Integer code) {
+	super();
+	this.date = date;
+	this.message = message;
+	this.status = status;
+	this.code = code;
+}
+public MyError(String string, String message2, String status2, String message3) {
+	// TODO Auto-generated constructor stub
+}
+@Override
+public String toString() {
+	return "MyError [date=" + date + ", message=" + message + ", status=" + status + ", code=" + code + "]";
+}
+public void setMessage(String message) {
+	this.message = message;
+}
+public String getStatus() {
+	return status;
+}
+public void setStatus(String status) {
+	this.status = status;
+}
+public Integer getCode() {
+	return code;
+}
+public void setCode(Integer code) {
+	this.code = code;
+}
+
+}
